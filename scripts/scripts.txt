@@ -1,0 +1,200 @@
+old way
+===========
+-create a virual environment
+-manually activate the env
+-install the packages used in the project
+
+
+## for specific version
+pipenv install pyspark==3.4.1
+## for stable latest version
+pipenv install pyspark
+
+## To activate this project's virtualenv, run pipenv shell.
+pipenv shell
+
+
+## path for the virual environment
+C:\Users\skankal\.virtualenvs
+
+## to activate env
+pipenv shell
+
+## to come out of env
+exit
+
+
+## to run python in venv
+pipenv run python
+
+## to install more packages
+pipenv install pytest
+
+## to uninstall package
+pipenv uninstall pytest
+
+
+## to install packages in dev env
+pipenv install pytest --dev
+
+
+
+
+
+## to remove virtualenv
+pipenv --rm
+
+## to create new virtual env using pipfile
+pipenv install
+
+## to install pyenv-win in powershell
+pip install pyenv-win --target $HOME\\.pyenv
+
+## Adding PYENV, PYENV_HOME and PYENV_ROOT to your Environment Variables
+[System.Environment]::SetEnvironmentVariable('PYENV',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+
+[System.Environment]::SetEnvironmentVariable('PYENV_ROOT',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+
+[System.Environment]::SetEnvironmentVariable('PYENV_HOME',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
+
+## Now adding the following paths to your USER PATH variable in order to access the pyenv command
+[System.Environment]::SetEnvironmentVariable('path', $env:USERPROFILE + "\.pyenv\pyenv-win\bin;" + $env:USERPROFILE + "\.pyenv\pyenv-win\shims;" + [System.Environment]::GetEnvironmentVariable('path', "User"),"User")
+
+## install python version 3.2
+pyenv install 3.2
+
+
+
+
+
+RetailAnalysis
+
+- configs
+    -application.conf
+        customers.file.path = ''
+        (to keep project level configuration like file path etc.)
+
+    -pyspark.conf
+        (to give spark level configuration like executor core, executor memory, application name, etc.)
+
+- lib
+    ConfigRead.py ( to read the config files )
+    DataManipulation.py (all pyspark transformations)
+    DataReader.py (to create spark dataframes)
+    Utils.py (creating spark session)
+
+- data
+    customer.csv
+    orders.csv
+
+
+- application_main.py ( entry point for the application )
+
+- Pipfile
+- Pipfile.lock
+
+## to run your appliction file
+python application_main.py LOCAL
+
+
+
+
+Usage Examples:
+   Create a new project using Python 3.7, specifically:
+   $ pipenv --python 3.7
+
+   Remove project virtualenv (inferred from current directory):
+   $ pipenv --rm
+
+   Install all dependencies for a project (including dev):
+   $ pipenv install --dev
+
+   Create a lockfile containing pre-releases:
+   $ pipenv lock --pre
+
+   Show a graph of your installed dependencies:
+   $ pipenv graph
+
+   Check your installed dependencies for security vulnerabilities:
+   $ pipenv check
+
+   Install a local setup.py into your virtual environment/Pipfile:
+   $ pipenv install -e .
+
+   Use a lower-level pip command:
+   $ pipenv run pip freeze
+
+Commands:
+  check         Checks for PyUp Safety security vulnerabilities and against
+                PEP 508 markers provided in Pipfile.
+  clean         Uninstalls all packages not specified in Pipfile.lock.
+  graph         Displays currently-installed dependency graph information.
+  install       Installs provided packages and adds them to Pipfile, or (if no
+                packages are given), installs all packages from Pipfile.
+  lock          Generates Pipfile.lock.
+  open          View a given module in your editor.
+  requirements  Generate a requirements.txt from Pipfile.lock.
+  run           Spawns a command installed into the virtualenv.
+  scripts       Lists scripts in current environment config.
+  shell         Spawns a shell within the virtualenv.
+  sync          Installs all packages specified in Pipfile.lock.
+  uninstall     Uninstalls a provided package and removes it from Pipfile.
+  update        Runs lock, then sync.
+  upgrade       Resolves provided packages and adds them to Pipfile, or (if no
+                packages are given), merges results to Pipfile.lock
+  verify        Verify the hash in Pipfile.lock is up-to-date.
+PS C:\Users\skankal\.pyenv> pyenv
+pyenv : The term 'pyenv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
+the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ pyenv
++ ~~~~~
+    + CategoryInfo          : ObjectNotFound: (pyenv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\skankal\.pyenv>
+
+
+
+## to run the unit test cases
+python -m pytest
+
+## fixture is used to write the setup code
+@pytest.fixture
+def spark():
+    spark_session=get_spark_session("LOCAL")
+    yield spark_session
+    spark_session.stop()
+
+## write all frixture in file conftest.py
+
+## to list the fixtures
+
+python -m pytest --fixtures
+
+
+
+## to label tests with some markers 
+@pytest.mark.transformation()
+
+## to run just tests which are mark with transformation
+python -m pytest -v -m transformation
+
+## to avoid warining create a file pytest.ini 
+and include 
+[pytest]
+markers = 
+    transformation: tests the transformations
+
+## to get this list of all markers
+python -m pytest --markers
+
+## to run all the test which are not transformation
+python -m pytest -v -m "not transformation"
+
+
+python -m pytest -v -m "latest"
+
+python -m pytest -v -m "not transformation"
+
+ pipenv install pytest==7.4.3   
