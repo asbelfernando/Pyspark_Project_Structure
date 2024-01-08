@@ -3,14 +3,16 @@ from lib import DataManipulation,DataReader,Utils
 from pyspark.sql.functions import *
 
 if __name__=='__main__':
-    if len(sys.argv) < 2:
-        print("Please specify the environment")
-        sys.exit(-1)
+
+    sys.argv="LOCAL"
+    #if len(sys.argv) < 2:
+    #    print("Please specify the environment")
+    #    sys.exit(-1)
     
-    job_run_env=sys.argv[1]
-    
+    #job_run_env=sys.argv[1]
+
     print("Creating Spark Session")
-    
+    job_run_env="LOCAL"
     spark=Utils.get_spark_session(job_run_env)
     
     print("Created Spark Session")
