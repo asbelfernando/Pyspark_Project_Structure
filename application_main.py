@@ -23,5 +23,6 @@ if __name__=='__main__':
     joined_df=DataManipulation.join_orders_customers(orders_filtered,customers_df)
     aggregated_results=DataManipulation.count_orders_state(joined_df)
     aggregated_results.show()
+    spark.stop()
     print("end of main")
     
